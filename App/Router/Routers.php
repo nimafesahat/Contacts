@@ -1,64 +1,55 @@
 <?php 
 
-namespace MyApp\Router;
-
-use MyApp\Controller\ContactController;
-
-// Url pattern : Localhost/controller/method/params
+namespace App\Router;
 
 class Routers
 {
-    private $controller = 'index';
-    private $method = '';
-    private $params ;
+    protected $routes = [];
+    protected $controllerAction;
+    protected $params;
 
-    public function __construct()
+    public function addRoute(string $method , string $match , string $controller)
     {
-        $this->getUrls();
+        $this->routes[$method][$match] = $controller;
     }
 
-    public function getUrls()
+    public function matchRout()
     {
         $url = $_SERVER['REQUEST_URI'];
-        $url = rtrim($url,'/');
-        $url = explode('/',$url);
-        // print_r($url);
-        // echo urldecode($url[1]);
+        $method = $_SERVER['REQUEST_METHOD'];
 
-        if(isset($url[1])){
-            $controller = preg_match('/users|user|eddit|add/i',$url[1]) === 1 ? $url[1] : $this->error();
-            $this->controller = $controller;
-        }
-
-        if(isset($url[2])){
-            $method = preg_match('/index|show|add|delete|edit/i',$url[2]) === 1 ? $url[2] : $this->error();
-            $this->method = $method;
-        }
-
-        if(isset($url[3])){
-            $params = urldecode($url[3]);
-            $this->params = $params;
-        }
-    }
-
-    public function callUrls()
-    {
-        $callController = new ContactController();
-        $controller = $this->controller;
-        $method = $this->method;
-        $params = $this->params;
-
-        if(isset($method)){
-            // Code to call function in controller folder 
-            if(isset($params)){
-                $params = urldecode($params);
-                $params = substr($params , 1 , -2);
-                return $params;
+        if(isset($this->routes[$method])){
+            foreach($this->routes[$method] as $routUrl=>$controller){
+                $regex = preg_replace('/\/(\d+)/','/{id}',$url);
+                $regex = str_replace('/','\/',$regex);
+                if(preg_match('/'. $regex .'/i',$routUrl)){
+                    if(preg_match('/\d+/',$url,$params)){
+                        $this->params = $params;
+                    }
+                    $this->controllerAction = $controller;
+                    break;
+                }
             }
         }
     }
 
-    private function error(){
-        echo "The page not found : Error 404!";
+    public function callController()
+    {
+        if($this->controllerAction){
+            list($controllername,$method) = explode('@',$this->controllerAction);
+            // $controller = new $controllername;
+            // call_user_func_array([$controller,$method],$this->params);
+            echo 'Call controller is ok!'; 
+        }else{
+            http_response_code(404);
+            echo '404 : Page not found!';
+        }
+                
     }
 }
+
+$x = new Routers;
+$x->addRoute('GET','/Home/add/{id}','ContactController@add');
+$x->addRoute('GET','/Home','Contactcontroller@show');
+$x->matchRout();
+$x->callController();
