@@ -53,3 +53,4 @@ $x->addRoute('GET','/Home/add/{id}','ContactController@add');
 $x->addRoute('GET','/Home','Contactcontroller@show');
 $x->matchRout();
 $x->callController();
+echo "Hello world";
