@@ -24,6 +24,7 @@ class ComposerStaticInitd751713988987e9331980363e24189ce
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'MyApp\\Config\\Configs' => __DIR__ . '/../..' . '/App/Config/Configs.php',
         'MyApp\\Controller\\ContactController' => __DIR__ . '/../..' . '/App/Controller/ContactController.php',
+        'MyApp\\Controller\\ContactProfile' => __DIR__ . '/../..' . '/App/Controller/ContactProfile.php',
         'MyApp\\Model\\ContactModel' => __DIR__ . '/../..' . '/App/Model/ContactModel.php',
         'MyApp\\Router\\Routers' => __DIR__ . '/../..' . '/App/Router/Routers.php',
     );

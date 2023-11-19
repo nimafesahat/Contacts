@@ -1,12 +1,12 @@
 <?php 
 
-namespace App\Router;
+namespace MyApp\Router;
 
 class Routers
 {
     protected $routes = [];
-    protected $controllerAction;
-    protected $params;
+    protected $controllerAction = null;
+    protected $params = null;
 
     public function addRoute(string $method , string $match , string $controller)
     {
@@ -37,9 +37,8 @@ class Routers
     {
         if($this->controllerAction){
             list($controllername,$method) = explode('@',$this->controllerAction);
-            // $controller = new $controllername;
-            // call_user_func_array([$controller,$method],$this->params);
-            echo 'Call controller is ok!'; 
+            $controller = new $controllername;
+            call_user_func_array([$controller,$method],[$this->params]);
         }else{
             http_response_code(404);
             echo '404 : Page not found!';
@@ -48,9 +47,8 @@ class Routers
     }
 }
 
-$x = new Routers;
-$x->addRoute('GET','/Home/add/{id}','ContactController@add');
-$x->addRoute('GET','/Home','Contactcontroller@show');
-$x->matchRout();
-$x->callController();
-echo "Hello world";
+
+
+
+
+

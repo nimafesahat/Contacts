@@ -9,6 +9,7 @@ return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'MyApp\\Config\\Configs' => $baseDir . '/App/Config/Configs.php',
     'MyApp\\Controller\\ContactController' => $baseDir . '/App/Controller/ContactController.php',
+    'MyApp\\Controller\\ContactProfile' => $baseDir . '/App/Controller/ContactProfile.php',
     'MyApp\\Model\\ContactModel' => $baseDir . '/App/Model/ContactModel.php',
     'MyApp\\Router\\Routers' => $baseDir . '/App/Router/Routers.php',
 );
