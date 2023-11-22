@@ -7,9 +7,4 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
-    'App\\Config\\Configs' => $baseDir . '/App/Config/Configs.php',
-    'App\\Controller\\ContactController' => $baseDir . '/App/Controller/ContactController.php',
-    'App\\Controller\\ContactProfile' => $baseDir . '/App/Controller/ContactProfile.php',
-    'App\\Model\\ContactModel' => $baseDir . '/App/Model/ContactModel.php',
-    'App\\Router\\Routers' => $baseDir . '/App/Router/Routers.php',
 );

@@ -6,27 +6,22 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitd751713988987e9331980363e24189ce
 {
-    public static $prefixLengthsPsr4 = array(
-        'M' =>
-        array(
-            'App\\' => 6,
+    public static $prefixLengthsPsr4 = array (
+        'A' => 
+        array (
+            'App\\' => 4,
         ),
     );
 
-    public static $prefixDirsPsr4 = array(
-        'App\\' =>
-        array(
+    public static $prefixDirsPsr4 = array (
+        'App\\' => 
+        array (
             0 => __DIR__ . '/../..' . '/App',
         ),
     );
 
-    public static $classMap = array(
+    public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'App\\Config\\Configs' => __DIR__ . '/../..' . '/App/Config/Configs.php',
-        'App\\Controller\\ContactController' => __DIR__ . '/../..' . '/App/Controller/ContactController.php',
-        'App\\Controller\\ContactProfile' => __DIR__ . '/../..' . '/App/Controller/ContactProfile.php',
-        'App\\Model\\ContactModel' => __DIR__ . '/../..' . '/App/Model/ContactModel.php',
-        'App\\Router\\Routers' => __DIR__ . '/../..' . '/App/Router/Routers.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
@@ -35,6 +30,7 @@ class ComposerStaticInitd751713988987e9331980363e24189ce
             $loader->prefixLengthsPsr4 = ComposerStaticInitd751713988987e9331980363e24189ce::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitd751713988987e9331980363e24189ce::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInitd751713988987e9331980363e24189ce::$classMap;
+
         }, null, ClassLoader::class);
     }
 }
