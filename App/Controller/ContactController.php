@@ -1,9 +1,9 @@
 <?php
 
-namespace MyApp\Controller;
+namespace App\Controller;
 
-use MyApp\Controller\ContactProfile;
-use MyApp\Model\ContactModel;
+use App\Controller\ContactProfile;
+use App\Model\ContactModel;
 
 
 class ContactController
@@ -29,9 +29,9 @@ class ContactController
             $name = $_POST['name'];
             $email = $_POST['email'];
             $imgName = $this->profile->insert();
-            $this->model->addContact($name, $email , $imgName);
+            $this->model->addContact($name, $email, $imgName);
             echo "Contact added - <a href='http://localhost/home'>back to home</a>";
-        }elseif($_SERVER['REQUEST_METHOD'] === 'GET'){
+        } elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
             require __DIR__ . '/../View/AddForm.php';
         }
     }
@@ -45,17 +45,16 @@ class ContactController
     public function editContact()
     {
 
-        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $contactId = $_POST['id'];
             $name = $_POST['name'];
             $email = $_POST['email'];
             $deleteImg = $_POST['img-name'];
             $imgName = $this->profile->insert();
             $this->profile->destroy($deleteImg);
-            $this->model->updateContact($contactId,$name,$email,$imgName);
+            $this->model->updateContact($contactId, $name, $email, $imgName);
             echo "Contact edited - <a href='http://localhost/home'>back to home</a>";
         }
-        
     }
 
     public function deleteContact($id)
@@ -66,4 +65,3 @@ class ContactController
         echo "Contact deleted - <a href='http://localhost/home'>back to home</a>";
     }
 }
-

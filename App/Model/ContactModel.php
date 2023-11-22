@@ -1,8 +1,8 @@
 <?php
 
-namespace MyApp\Model;
+namespace App\Model;
 
-use MyApp\Config\Configs;
+use App\Config\Configs;
 
 class ContactModel
 {
@@ -33,13 +33,13 @@ class ContactModel
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public function addContact($name, $email , $profile)
+    public function addContact($name, $email, $profile)
     {
         $query = "INSERT INTO contacts (name, email , profile ) VALUES (:name, :email , :profile)";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':profile',$profile);
+        $stmt->bindParam(':profile', $profile);
         $stmt->execute();
     }
 
@@ -52,7 +52,7 @@ class ContactModel
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
-    public function updateContact($contactId, $name, $email , $profile)
+    public function updateContact($contactId, $name, $email, $profile)
     {
         $query = "UPDATE contacts SET name = :name, email = :email, profile = :profile WHERE id = :id";
         $stmt = $this->db->prepare($query);
@@ -70,5 +70,4 @@ class ContactModel
         $stmt->bindParam(':id', $contactId);
         $stmt->execute();
     }
-
 }
