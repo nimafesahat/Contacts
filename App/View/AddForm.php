@@ -48,6 +48,7 @@
             type="text"
             id="name"
             name="name"
+            required
           />
         </div>
         <div class="form-group">
@@ -56,6 +57,7 @@
             type="text"
             id="email"
             name="email"
+            required
           />
           <div class="form-group">
           <label for="img">Profile img:</label>
@@ -63,6 +65,7 @@
             type="file"
             id="img"
             name="img"
+            value="null"
           />
         </div>
         <button type="submit">Submit</button>

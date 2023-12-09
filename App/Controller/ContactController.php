@@ -17,6 +17,23 @@ class ContactController
         $this->profile = new ContactProfile();
     }
 
+    private function validate()
+    {
+        htmlspecialchars($_POST['name']);
+        htmlspecialchars($_POST['email']);
+
+        if(!preg_match("/^[a-zA-Z ]*$/",$_POST['name'])) {
+            echo "Only letters and white space";
+        }elseif(!filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)) {
+            echo "Invalid email";
+        }elseif($this->profile->checkFile() == 2) {
+            echo "only JPG, JPEG, PNG files format is allowed.";
+        }else {
+            return 1;
+        }
+
+    }
+
     public function listContacts()
     {
         $contacts = $this->model->getAllContacts();
@@ -26,11 +43,15 @@ class ContactController
     public function addContact()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            
             $name = $_POST['name'];
             $email = $_POST['email'];
-            $imgName = $this->profile->insert();
-            $this->model->addContact($name, $email, $imgName);
-            echo "Contact added - <a href='/Contacts/home'>back to home</a>";
+            
+            if($this->validate()) {
+                $imgName = $this->profile->insert();
+                $this->model->addContact($name, $email, $imgName);
+                echo "Contact added - <a href='/Contacts/home'>back to home</a>";
+            }
         } elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
             require __DIR__ . '/../View/AddForm.php';
         }
@@ -50,10 +71,13 @@ class ContactController
             $name = $_POST['name'];
             $email = $_POST['email'];
             $deleteImg = $_POST['img-name'];
-            $imgName = $this->profile->insert();
-            $this->profile->destroy($deleteImg);
-            $this->model->updateContact($contactId, $name, $email, $imgName);
-            echo "Contact edited - <a href='/Contacts/home'>back to home</a>";
+            if($this->validate()) {
+                $imgName = $this->profile->insert();
+                $this->profile->destroy($deleteImg);
+                $this->model->updateContact($contactId, $name, $email, $imgName);
+                echo "Contact edited - <a href='/Contacts/home'>back to home</a>";
+            }
+            
         }
     }
 

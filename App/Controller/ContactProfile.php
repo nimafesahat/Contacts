@@ -9,10 +9,15 @@ class ContactProfile
     {
         $fileType = $_FILES['img']['type'];
 
-        if (preg_match('/(image)\/(jpg|png|jpeg)/i', $fileType)) {
-            return 1;
-        } else {
-            echo "only JPG, JPEG, PNG files format is allowed.";
+        if($_FILES['img']['error'] != 4) {
+
+            if (preg_match('/(image)\/(jpg|png|jpeg)/i', $fileType)) {
+                return 1;
+            } else {
+                return 2; // "only JPG, JPEG, PNG files format is allowed.
+            }
+        }else{
+            return 0;
         }
     }
 
@@ -25,11 +30,15 @@ class ContactProfile
             move_uploaded_file($_FILES['img']['tmp_name'], __DIR__ . "/../../img/" . basename($_FILES["img"]["name"]));
             rename(__DIR__ . '/../../img/' . $_FILES['img']['name'], __DIR__ . '/../../img/' . $fileName);
             return $fileName;
+        }elseif($checkFile == 0) {
+            return "profile.png"; 
         }
     }
 
     public function destroy($imgName)
     {
+        if($imgName != 'profile.png') {
         unlink(__DIR__ . '/../../img/' . $imgName);
+        }
     }
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 24, 2023 at 09:07 AM
+-- Generation Time: Dec 09, 2023 at 05:27 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -40,7 +40,9 @@ CREATE TABLE `contacts` (
 
 INSERT INTO `contacts` (`id`, `name`, `email`, `profile`) VALUES
 (27, 'Nima', 'nima@gmail.com', '1700815727.png'),
-(28, 'Ali', 'aliy@gmail.com', '1700815759.png');
+(28, 'Ali', 'aliy@gmail.com', '1700815759.png'),
+(29, 'reza', 'reza@gmail.com', '1702142552.png'),
+(31, 'cxxvxffg', 'dffgfdfgfdg@dglnlf.com', 'profile.png');
 
 --
 -- Indexes for dumped tables
@@ -60,7 +62,7 @@ ALTER TABLE `contacts`
 -- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
